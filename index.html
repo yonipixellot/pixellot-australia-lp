@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixellot Australia – Light Up Your Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════ RESET & TOKENS ═══════ */
+    :root {
+      --navy: #02131D;
+      --cyan: #00D6FE;
+      --beige: #F1EEEA;
+      --white: #FFFFFF;
+      --ff: 'Red Hat Display', sans-serif;
+    }
+    @font-face {
+      font-family: 'Gala Triline';
+      src: url('fonts/Gala-Triline.otf') format('opentype');
+      font-weight: normal; font-style: normal; font-display: swap;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff); color: var(--navy); background: var(--navy);
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ═══════ NAVBAR ═══════ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 75px; background: var(--cyan);
+      transition: transform .35s;
+    }
+    .nav-inner {
+      max-width: 1440px; margin: 0 auto; height: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 96px;
+    }
+    .nav-logo-img { height: 27px; width: auto; }
+    .nav-btn {
+      background: var(--navy); color: var(--white); border: 2px solid var(--navy);
+      padding: 8px 28px; border-radius: 50px; font-family: var(--ff);
+      font-weight: 500; font-size: 16px; letter-spacing: 0.54px; cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,214,254,.3); }
+
+    /* ═══════ HERO ═══════ */
+    .hero {
+      position: relative; width: 100%; height: 873px;
+      overflow: hidden; background: #1a2030;
+    }
+    .hero-bg {
+      position: absolute; inset: -10% 0 0 0; width: 100%; height: 110%;
+      object-fit: cover; object-position: center 30%;
+    }
+    .hero-grad {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 260px;
+      background: linear-gradient(to bottom, transparent, var(--navy));
+      z-index: 2;
+    }
+    .hero-inner {
+      position: relative; z-index: 3; height: 100%; padding-top: 75px;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+      text-align: center; padding-bottom: 30px;
+    }
+    .hero-title {
+      font-size: 100px; font-weight: 400; font-style: italic; line-height: 1;
+      color: var(--white); margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255,255,255,.5), 0 0 30px rgba(255,255,255,.2), 0 0 60px rgba(255,255,255,.08);
+    }
+    .hero-sub {
+      display: flex; align-items: center; gap: 24px; margin-top: 10px;
+    }
+    .hero-cam {
+      width: 188px; height: 130px; object-fit: cover; border-radius: 10px; flex-shrink: 0;
+    }
+    .hero-divider {
+      width: 2px; height: 100px; background: rgba(255,255,255,.3); flex-shrink: 0;
+    }
+    .hero-sub-text {
+      font-size: 26px; color: var(--white); text-align: left; line-height: 1.35;
+    }
+    .hero-sub-text .cyan { color: var(--cyan); font-style: italic; }
+
+    /* ═══════ MARQUEE ═══════ */
+    .marquee {
+      background: var(--beige); height: 90px; overflow: hidden;
+      transform: rotate(-0.2deg); position: relative; z-index: 5;
+    }
+    .marquee-track {
+      display: flex; width: max-content; animation: marqueeScroll 40s linear infinite;
+    }
+    .marquee-set {
+      display: flex; align-items: center; gap: 22px; padding: 0 22px; height: 90px; flex-shrink: 0;
+    }
+    .marquee-item {
+      font-size: 38px; font-weight: 400; letter-spacing: -1.5px; white-space: nowrap;
+      background: linear-gradient(147deg, var(--cyan) 5%, #000 55%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .marquee-star {
+      width: 34px; height: 34px; flex-shrink: 0;
+    }
+    @keyframes marqueeScroll { to { transform: translateX(-50%); } }
+
+    /* ═══════ SECTION: Won't Happen Automatically ═══════ */
+    .sec-auto {
+      background: var(--navy); color: var(--white);
+      padding: 60px 96px; position: relative; overflow: hidden;
+    }
+    .sec-auto h2 { font-size: 40px; font-weight: 700; margin-bottom: 10px; }
+    .sec-auto h2 .cyan { color: var(--cyan); font-style: italic; }
+    .sec-auto > p { font-size: 20px; line-height: 1.75; margin-bottom: 30px; max-width: 1050px; }
+    .cards-row { display: flex; gap: 12px; margin-bottom: 30px; }
+    .card { position: relative; overflow: hidden; border: 2px solid var(--white); }
+    .card img { width: 100%; height: 100%; object-fit: cover; }
+    .card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,19,29,.1), rgba(2,19,29,.5)); }
+    .card--wide { width: 58%; height: 386px; }
+    .card--round { width: 42%; height: 386px; border-radius: 0 190px 190px 0; }
+    .cards-row { position: relative; }
+    .cards-camera {
+      position: absolute; top: 20px; left: 22%; transform: translateX(-50%);
+      width: 340px; z-index: 5;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,.5));
+    }
+    .points-row { display: flex; gap: 140px; margin-top: 20px; }
+    .point { display: flex; gap: 16px; align-items: flex-start; }
+    .point-num {
+      font-family: 'Gala Triline', Georgia, serif; font-size: 100px; line-height: .85;
+      color: var(--cyan); font-weight: normal; flex-shrink: 0; min-width: 60px;
+    }
+    .point h3 { font-size: 32px; font-weight: 600; line-height: 1.25; max-width: 320px; padding-top: 10px; }
+    .point em { font-style: italic; }
+
+    /* ═══════ SECTION: Why Moment Matters ═══════ */
+    .sec-moment { background: var(--beige); padding: 50px 96px; overflow: hidden; }
+    .sec-moment h2 { font-size: 40px; font-weight: 700; margin-bottom: 6px; }
+    .sec-moment > p:first-of-type { font-size: 20px; line-height: 1.75; margin-bottom: 20px; }
+    .moment-cards { display: flex; gap: 10px; height: 371px; margin-bottom: 16px; }
+    .mcard { position: relative; overflow: hidden; border-radius: 4px; cursor: pointer; transition: transform .5s; }
+    .mcard:hover { transform: scale(1.02); }
+    .mcard img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .mcard:hover img { transform: scale(1.05); }
+    .mcard--lg { flex: 1.8; }
+    .mcard--md { flex: 1.2; }
+    .mcard--sm { flex: 1; }
+    .mcard-ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(2,19,29,.1), rgba(2,19,29,.55)); }
+    .mcard-label { position: absolute; bottom: 16px; left: 24px; }
+    .mcard-label h3 {
+      font-size: 50px; font-weight: 600; color: var(--white);
+      text-shadow: 0 3px 6px rgba(0,0,0,.35); letter-spacing: -1px; line-height: 1;
+    }
+    .mcard-label span { font-size: 30px; font-weight: 500; font-style: italic; color: var(--white); }
+    .sec-moment .quote { font-size: 38px; line-height: 1.5; }
+
+    /* ═══════ FIBA BAR ═══════ */
+    .sec-fiba { background: var(--white); padding: 40px 96px; overflow: visible; position: relative; z-index: 10; }
+    .sec-fiba-inner { display: flex; align-items: center; gap: 24px; }
+    .sec-fiba-inner img { height: 80px; border-radius: 8px; flex-shrink: 0; }
+    .sec-fiba-inner h3 { font-size: 32px; font-weight: 700; }
+    .fiba-ball {
+      position: absolute; right: 60px; top: -70px; width: 220px; opacity: .85;
+      animation: floatBall 7s ease-in-out infinite;
+    }
+    @keyframes floatBall { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-18px) rotate(-5deg); } }
+
+    /* ═══════ SECTION: Five Reasons ═══════ */
+    .sec-reasons {
+      position: relative; min-height: 884px; padding: 50px 96px 80px; overflow: hidden;
+      background: linear-gradient(141deg, #02131d 2%, #050917 32%, #0f1c3c 53%, #152349 63%, #182651 71%);
+      color: var(--white);
+    }
+    .sec-reasons .bg-court { position: absolute; bottom: 0; left: 0; width: 600px; opacity: .2; z-index: 1; }
+    .sec-reasons .bg-ball { position: absolute; top: -150px; right: -80px; width: 900px; opacity: .5; z-index: 1; }
+    .sec-reasons .inner { position: relative; z-index: 2; max-width: 1248px; width: 100%; }
+    .sec-reasons h2 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
+    .sec-reasons h2 .cyan { color: var(--cyan); font-style: italic; }
+    .sec-reasons .sub { font-size: 26px; margin-bottom: 50px; opacity: .9; }
+    .reasons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 120px; }
+    .reason { display: flex; gap: 16px; align-items: flex-start; }
+    .reason--r { grid-column: 2; }
+    .reason-n {
+      font-family: 'Gala Triline', Georgia, serif; font-size: 150px; line-height: .85;
+      color: var(--cyan); font-weight: normal; min-width: 80px; flex-shrink: 0;
+    }
+    .reason > div { flex: 1; padding-top: 20px; }
+    .reason h4 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+    .reason p { font-size: 19px; line-height: 1.75; opacity: .85; }
+
+    /* ═══════ SECTION: Video ═══════ */
+    .sec-video { background: var(--beige); padding: 50px 96px 80px; text-align: center; position: relative; overflow: hidden; }
+    .sec-video h2 { font-size: 40px; font-weight: 700; margin-bottom: 28px; }
+    .video-wrap {
+      position: relative; max-width: 1147px; margin: 0 auto; border-radius: 16px;
+      overflow: hidden; transition: transform .4s; aspect-ratio: 16/9;
+    }
+    .video-thumb { position: relative; cursor: pointer; }
+    .video-wrap:hover { transform: scale(1.005); box-shadow: 0 20px 60px rgba(0,0,0,.15); }
+    .video-wrap img { width: 100%; }
+    .play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 100px; height: 100px; border: none; background: none; cursor: pointer;
+      filter: drop-shadow(0 4px 20px rgba(0,214,254,.4));
+    }
+    .play-btn svg { width: 100%; height: 100%; }
+
+    /* ═══════ SECTION: Final + Footer ═══════ */
+    .sec-final { background: var(--white); overflow: visible; position: relative; }
+    .final-top { display: flex; min-height: 500px; }
+    .final-text {
+      flex: 1; padding: 70px 77px; max-width: 550px;
+      display: flex; flex-direction: column; justify-content: flex-start;
+    }
+    .final-text h2 { font-size: 40px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+    .final-text p { font-size: 22px; line-height: 1.6; margin-bottom: 40px; }
+    .final-ba { height: 45px; width: auto; align-self: flex-start; }
+    .final-img { flex: 1; overflow: hidden; min-height: 500px; }
+    .final-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .final-bottom { position: relative; }
+    .final-bottom { overflow: visible; }
+    .final-logo-badge {
+      position: absolute; top: -134px; left: 50%; transform: translateX(-50%);
+      z-index: 20; width: 268px; height: 268px; border-radius: 50%;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,.3);
+    }
+    .final-badge-img { width: 50%; height: auto; }
+
+    .final-footer {
+      background: var(--navy); padding: 160px 96px 50px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+      position: relative; z-index: 11;
+    }
+    .footer-tag { font-size: 48px; font-weight: 600; line-height: 1.3; }
+    .footer-tag .w { color: var(--white); }
+    .footer-tag .c {
+      color: var(--cyan); font-style: italic;
+      text-shadow: 0 0 12px rgba(0,214,254,.2), 0 0 30px rgba(0,214,254,.08);
+    }
+    .footer-socials { display: flex; gap: 24px; }
+    .footer-socials a {
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      opacity: .7; transition: opacity .3s, transform .3s;
+    }
+    .footer-socials a:hover { opacity: 1; transform: translateY(-3px); }
+    .footer-socials svg { width: 28px; height: 28px; }
+
+    /* ═══════ ANIMATIONS (progressive) ═══════ */
+    .anim { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+    .anim.visible { opacity: 1; transform: none; }
+
+    /* ═══════ RESPONSIVE ═══════ */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-logo-img { height: 20px; }
+      .nav-btn { font-size: 13px; padding: 6px 18px; }
+      .hero { height: 560px; }
+      .hero-title { font-size: 48px; }
+      .hero-sub { flex-direction: column; gap: 12px; }
+      .hero-cam { width: 140px; height: 90px; }
+      .hero-divider { width: 60px; height: 2px; }
+      .hero-sub-text { font-size: 18px; text-align: center; }
+      .marquee-item { font-size: 22px; } .marquee-star { width: 22px; height: 22px; }
+      .sec-auto, .sec-moment, .sec-fiba, .sec-reasons, .sec-video { padding-left: 20px; padding-right: 20px; }
+      .sec-auto h2, .sec-moment h2, .sec-reasons h2, .sec-video h2, .final-text h2 { font-size: 28px; }
+      .cards-row { flex-direction: column; }
+      .card--wide, .card--round { width: 100%; height: 230px; border-radius: 0; }
+      .cards-camera { width: 160px; top: 15px; left: 42%; }
+      .card--round { border-radius: 0 0 80px 0; }
+      .points-row { flex-direction: column; gap: 24px; }
+      .point-num { font-size: 60px; } .point h3 { font-size: 22px; }
+      .moment-cards { flex-direction: column; height: auto; }
+      .moment-cards { gap: 8px; height: auto !important; }
+      .mcard, .mcard--lg, .mcard--md, .mcard--sm { height: 200px !important; flex: none !important; width: 100% !important; }
+      .mcard-label h3 { font-size: 28px; } .mcard-label span { font-size: 18px; }
+      .mcard-label h3 { font-size: 36px; } .mcard-label span { font-size: 22px; }
+      .sec-moment .quote { font-size: 22px; }
+      .sec-fiba-inner { flex-wrap: wrap; justify-content: center; text-align: center; }
+      .sec-fiba-inner h3 { font-size: 20px; } .fiba-ball { display: none; }
+      .reasons-grid { grid-template-columns: 1fr; } .reason--r { grid-column: 1; }
+      .reason-n { font-size: 80px; min-width: 50px; }
+      .sec-reasons .bg-ball { width: 400px; right: -150px; }
+      .final-top { flex-direction: column; }
+      .final-text { padding: 40px 20px; max-width: 100%; } .final-text p { font-size: 17px; }
+      .final-img { height: 280px; min-height: 280px; }
+      .final-logo-badge { width: 160px; height: 160px; top: -80px; }
+      .final-footer { padding: 110px 20px 30px; } .footer-tag { font-size: 24px; }
+    }
+    @media (min-width: 769px) and (max-width: 1200px) {
+      .nav-inner { padding: 0 48px; }
+      .sec-auto, .sec-moment, .sec-fiba, .sec-reasons, .sec-video { padding-left: 48px; padding-right: 48px; }
+      .hero-title { font-size: 72px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <img src="assets/pixellot-logo-black.svg" alt="Pixellot" class="nav-logo-img">
+      <a href="#contact" class="nav-btn">Contact us</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="assets/hero-bg.png" alt="" class="hero-bg">
+    <div class="hero-grad"></div>
+    <div class="hero-inner">
+      <h1 class="hero-title">LIGHT UP<br>YOUR TEAM</h1>
+      <div class="hero-sub">
+        <img src="assets/pixellot-system.png" alt="Pixellot Camera" class="hero-cam">
+        <div class="hero-divider"></div>
+        <p class="hero-sub-text">
+          Pixellot is approved nationally.<br>
+          <span class="cyan">Now you can light it up locally.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-set">
+        <span class="marquee-item">FIBA-Approved</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+        <span class="marquee-item">AI-Powered</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+        <span class="marquee-item">4K Professional Video</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+        <span class="marquee-item">Zero Upfront Cost</span>
+        <img src="assets/burst-star2.svg" class="marquee-star" alt="">
+        <span class="marquee-item">40,000+ Systems Worldwide</span>
+        <img src="assets/burst-star2.svg" class="marquee-star" alt="">
+        <span class="marquee-item">Priority Access Available</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+      </div>
+      <div class="marquee-set" aria-hidden="true">
+        <span class="marquee-item">FIBA-Approved</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+        <span class="marquee-item">AI-Powered</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+        <span class="marquee-item">4K Professional Video</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+        <span class="marquee-item">Zero Upfront Cost</span>
+        <img src="assets/burst-star2.svg" class="marquee-star" alt="">
+        <span class="marquee-item">40,000+ Systems Worldwide</span>
+        <img src="assets/burst-star2.svg" class="marquee-star" alt="">
+        <span class="marquee-item">Priority Access Available</span>
+        <img src="assets/burst-star.svg" class="marquee-star" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- WON'T HAPPEN AUTOMATICALLY -->
+  <section class="sec-auto">
+    <h2>This Won't Happen <span class="cyan">Automatically</span></h2>
+    <p>The agreement has been signed on the national level. But it's up to local basketball associations to <em>move quickly</em> to adopt and execute this new relationship on the community level. Basketball Australia spent a long time looking for the best partner, and they chose Pixellot because:</p>
+    <div class="cards-row">
+      <div class="card card--wide">
+        <img src="assets/benefit1-camera.png" alt="Pixellot Camera System">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card card--round">
+        <img src="assets/benefit2-players.jpg" alt="Youth Basketball">
+        <div class="card-overlay"></div>
+      </div>
+      <div class="cards-camera">
+        <img src="assets/camera.png" alt="Pixellot Camera">
+      </div>
+    </div>
+    <div class="points-row">
+      <div class="point">
+        <span class="point-num">1</span>
+        <h3>We are the <em>technology</em> leaders</h3>
+      </div>
+      <div class="point">
+        <span class="point-num">2</span>
+        <h3>Deep <em>commitment</em> to youth sports worldwide</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY THIS MOMENT MATTERS -->
+  <section class="sec-moment">
+    <h2>Why this Moment Matters?</h2>
+    <p>It is a unique moment. Games that are fleeting, one-time events can now become lasting digital assets that dramatically boost:</p>
+    <div class="moment-cards">
+      <div class="mcard mcard--lg">
+        <img src="assets/player-kid.jpg" alt="Player Experience">
+        <div class="mcard-ov"></div>
+        <div class="mcard-label"><h3>Player</h3><span>Experiences</span></div>
+      </div>
+      <div class="mcard mcard--md">
+        <img src="assets/parents-tablet.jpg" alt="Parent Engagement">
+        <div class="mcard-ov"></div>
+        <div class="mcard-label"><h3>Parent</h3><span>Engagement</span></div>
+      </div>
+      <div class="mcard mcard--sm">
+        <img src="assets/sportsmanship.jpg" alt="Healthy Competition">
+        <div class="mcard-ov"></div>
+        <div class="mcard-label"><h3>Healthy</h3><span>Competition</span></div>
+      </div>
+    </div>
+    <p class="quote">It's everything sports should be, in the moment. And forever.</p>
+  </section>
+
+  <!-- FIBA TRUST -->
+  <section class="sec-fiba">
+    <div class="sec-fiba-inner">
+      <img src="assets/fiba-logo.png" alt="FIBA">
+      <h3>Trusted by FIBA. Proven Worldwide.</h3>
+    </div>
+    <img src="assets/basketball.png" alt="" class="fiba-ball">
+  </section>
+
+  <!-- FIVE REASONS -->
+  <section class="sec-reasons">
+    <img src="assets/court-bg.png" alt="" class="bg-court">
+    <img src="assets/basketball-split.png" alt="" class="bg-ball">
+    <div class="inner">
+      <h2>Five Reasons This <span class="cyan">Opportunity</span> Is Unprecedented</h2>
+      <p class="sub">Secure your priority onboarding now.</p>
+      <div class="reasons-grid">
+        <div class="reason">
+          <span class="reason-n">1</span>
+          <div><h4>National Agreement</h4><p>Backed by a national agreement with Basketball Australia. No local permissions needed.</p></div>
+        </div>
+        <div class="reason">
+          <span class="reason-n">3</span>
+          <div><h4>Zero Investment</h4><p>Zero upfront investment, and no operational complexity. Works with your systems, not against them.</p></div>
+        </div>
+        <div class="reason">
+          <span class="reason-n">2</span>
+          <div><h4>Professional Grade</h4><p>Get the highest-level of video resolution and AI-powered, automated and personalized highlights.</p></div>
+        </div>
+        <div class="reason">
+          <span class="reason-n">4</span>
+          <div><h4>Proven at Scale</h4><p>No risk, this platform has been proven at scale globally including 12,000+ schools and colleges in the U.S.</p></div>
+        </div>
+        <div class="reason reason--r">
+          <span class="reason-n">5</span>
+          <div><h4>Priority Access</h4><p>Act early and get prioritized for system allocation and onboarding slots ahead of the season.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="sec-video">
+    <h2>Certified by FIBA. Chosen by the game.</h2>
+    <div class="video-wrap" id="video-container">
+      <div class="video-thumb" id="video-thumb">
+        <img src="assets/video-thumb.png" alt="Pixellot Video">
+        <button class="play-btn" aria-label="Play" onclick="playVideo()">
+          <svg viewBox="0 0 111 111" fill="none"><path d="M55.6 11.9c24.5 0 44.4 19.9 44.4 44.4 0 24.6-19.9 44.5-44.4 44.5S11.1 80.9 11.1 56.3c0-24.5 19.9-44.4 44.5-44.4zm-7.1 30.4a.5.5 0 00-.8.5v25.6c0 .4.5.7.8.5l22.1-12.8c.4-.2.4-.7 0-1L48.5 42.3z" fill="#00D6FE"/></svg>
+        </button>
+      </div>
+      <iframe id="video-iframe" src="" style="display:none; position:absolute; inset:0; width:100%; height:100%; border:none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- FINAL + FOOTER -->
+  <section class="sec-final">
+    <div class="final-top">
+      <div class="final-text">
+        <h2>We Know You Have a Lot on Your Minds</h2>
+        <p>Whether you are a GM, association leader, competition manager, board member or venue operator, you are preparing for an upcoming season. Your primary mission is to elevate the player/parent experience, and so is ours.</p>
+        <img src="assets/ba-logo.png" alt="Basketball Australia" class="final-ba">
+      </div>
+      <div class="final-img">
+        <img src="assets/court-action2.jpg" alt="Basketball Court Action">
+      </div>
+    </div>
+    <div class="final-bottom">
+      <div class="final-logo-badge">
+        <img src="assets/pixellot-logos-badge.svg" alt="Pixellot" class="final-badge-img">
+      </div>
+      <div class="final-footer" id="contact">
+        <div class="footer-tag">
+          <span class="w">Together we will </span>
+          <span class="c">Light up your team</span>
+        </div>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="white"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.02 4.39 11.02 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.33l-.53 3.49h-2.8v8.44C19.61 23.09 24 18.09 24 12.07z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85 0 3.2-.01 3.58-.07 4.85-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07-3.2 0-3.58-.01-4.85-.07-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85 0-3.2.01-3.58.07-4.85C2.38 3.86 3.9 2.31 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.63-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-10.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function playVideo() {
+      document.getElementById('video-thumb').style.display = 'none';
+      var iframe = document.getElementById('video-iframe');
+      iframe.src = 'https://player.vimeo.com/video/968638376?autoplay=1&title=0&byline=0&portrait=0';
+      iframe.style.display = 'block';
+    }
+  </script>
+  <!-- GSAP for scroll animations (progressive enhancement) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script>
+    // All content is visible by default. GSAP only adds scroll effects.
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Parallax hero bg
+      gsap.to('.hero-bg', {
+        y: -100, ease: 'none',
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+      });
+
+      // FIBA floating ball parallax
+      gsap.to('.fiba-ball', {
+        y: -40, rotation: -20, ease: 'none',
+        scrollTrigger: { trigger: '.sec-fiba', start: 'top bottom', end: 'bottom top', scrub: 2 }
+      });
+
+      // Reasons basketball parallax
+      gsap.to('.bg-ball', {
+        y: 100, rotation: -8, ease: 'none',
+        scrollTrigger: { trigger: '.sec-reasons', start: 'top bottom', end: 'bottom top', scrub: 2 }
+      });
+
+      // Subtle section entrance — NO opacity:0, just slide up
+      document.querySelectorAll('.sec-auto, .sec-moment, .sec-fiba, .sec-reasons, .sec-video, .sec-final').forEach(sec => {
+        gsap.fromTo(sec, { y: 30 }, {
+          y: 0, duration: .8, ease: 'power3.out',
+          scrollTrigger: { trigger: sec, start: 'top 90%', once: true }
+        });
+      });
+
+      // Image cards zoom
+      document.querySelectorAll('.card img, .mcard img').forEach(img => {
+        gsap.from(img, {
+          scale: 1.15, duration: 1.4, ease: 'power2.out',
+          scrollTrigger: { trigger: img.parentElement, start: 'top 80%', once: true }
+        });
+      });
+
+      // Play button pulse
+      gsap.to('.play-btn', {
+        scale: 1.1, duration: 1.3, ease: 'power1.inOut',
+        yoyo: true, repeat: -1, transformOrigin: '50% 50%'
+      });
+
+      // Navbar hide/show
+      let last = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        document.querySelector('.nav').style.transform =
+          y > 200 && y > last ? 'translateY(-100%)' : 'translateY(0)';
+        last = y;
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
