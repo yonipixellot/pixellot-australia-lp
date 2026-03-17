@@ -177,7 +177,7 @@
       color: var(--white);
     }
     .sec-reasons .bg-court { position: absolute; bottom: 0; left: 0; width: 600px; opacity: .2; z-index: 1; }
-    .sec-reasons .bg-ball { position: absolute; top: -150px; right: -80px; width: 900px; opacity: .5; z-index: 1; }
+    .sec-reasons .bg-ball { position: absolute; bottom: -20px; left: -40px; width: 550px; opacity: 1; z-index: 1; }
     .sec-reasons .inner { position: relative; z-index: 2; max-width: 1248px; width: 100%; }
     .sec-reasons h2 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
     .sec-reasons h2 .cyan { color: var(--cyan); font-style: italic; }
@@ -257,42 +257,111 @@
     .anim { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
     .anim.visible { opacity: 1; transform: none; }
 
+    /* Mobile-only elements (hidden by default) */
+    .hero-cta {
+      display: none; background: transparent; color: var(--cyan);
+      border: 2px solid var(--cyan); padding: 8px 28px; border-radius: 50px;
+      font-family: var(--ff); font-weight: 500; font-size: 16px;
+      letter-spacing: 0.54px; cursor: pointer; align-items: center; gap: 8px;
+      margin-top: 20px; transition: transform .3s;
+    }
+    .hero-cta:hover { transform: translateY(-2px); }
+    .card-text { display: none; }
+    .sec-auto-detail em { color: var(--cyan); }
+    .sec-auto-detail { margin-bottom: 5px; }
+    .reasons-camera {
+      display: none;
+    }
+
     /* ═══════ RESPONSIVE ═══════ */
     @media (max-width: 768px) {
+      /* NAV */
+      .nav { height: 47px; }
       .nav-inner { padding: 0 20px; }
       .nav-logo-img { height: 20px; }
-      .nav-btn { font-size: 13px; padding: 6px 18px; }
+      .nav-btn { display: none; }
+
+      /* HERO */
       .hero { height: 560px; }
+      .hero-inner { padding: 47px 20px 30px; }
       .hero-title { font-size: 48px; }
-      .hero-sub { flex-direction: column; gap: 12px; }
-      .hero-cam { width: 140px; height: 90px; }
-      .hero-divider { width: 60px; height: 2px; }
-      .hero-sub-text { font-size: 18px; text-align: center; }
-      .marquee-item { font-size: 22px; } .marquee-star { width: 22px; height: 22px; }
+      .hero-sub { flex-direction: row; gap: 12px; align-items: flex-start; align-self: flex-start; }
+      .hero-cam {
+        position: absolute; bottom: 20px; right: -30px;
+        width: 215px; height: auto; border-radius: 0; z-index: 4;
+      }
+      .hero-divider { width: 2px; height: 55px; background: rgba(255,255,255,.5); }
+      .hero-sub-text { font-size: 18px; text-align: left; }
+      .hero-cta { display: inline-flex; align-self: flex-start; }
+
+      /* MARQUEE */
+      .marquee { height: 73px; }
+      .marquee-set { height: 73px; }
+      .marquee-item { font-size: 22px; }
+      .marquee-star { width: 22px; height: 22px; }
+
+      /* SECTIONS COMMON */
       .sec-auto, .sec-moment, .sec-fiba, .sec-reasons, .sec-video { padding-left: 20px; padding-right: 20px; }
       .sec-auto h2, .sec-moment h2, .sec-reasons h2, .sec-video h2, .final-text h2 { font-size: 28px; }
-      .cards-row { flex-direction: column; }
-      .card--wide, .card--round { width: 100%; height: 230px; border-radius: 0; }
-      .cards-camera { width: 160px; top: 15px; left: 42%; }
-      .card--round { border-radius: 0 0 80px 0; }
-      .points-row { flex-direction: column; gap: 24px; }
-      .point-num { font-size: 60px; } .point h3 { font-size: 22px; }
-      .moment-cards { flex-direction: column; height: auto; }
-      .moment-cards { gap: 8px; height: auto !important; }
-      .mcard, .mcard--lg, .mcard--md, .mcard--sm { height: 200px !important; flex: none !important; width: 100% !important; }
-      .mcard-label h3 { font-size: 28px; } .mcard-label span { font-size: 18px; }
-      .mcard-label h3 { font-size: 36px; } .mcard-label span { font-size: 22px; }
+
+      /* SEC-AUTO (reorder: heading → intro → cards → detail) */
+      .sec-auto { display: flex; flex-direction: column; }
+      .sec-auto h2 { order: 1; margin-bottom: 10px; }
+      .sec-auto-intro { order: 2; font-size: 18px; line-height: 1.45; margin-bottom: 20px; }
+      .sec-auto .cards-row { order: 3; flex-direction: column; gap: 20px; margin-bottom: 20px; }
+      .sec-auto-detail { order: 4; font-size: 18px; line-height: 1.45; margin-bottom: 0; }
+      .sec-auto .points-row { display: none; }
+      .cards-camera { display: none; }
+      .card--wide { width: 100%; height: 232px; border-radius: 114px 0 0 114px; }
+      .card--round { width: 77%; height: 232px; border-radius: 0 114px 114px 0; }
+      .card-text {
+        display: block; position: absolute; bottom: 20px;
+        color: white; font-size: 24px; font-weight: 600;
+        line-height: 1.35; z-index: 3; max-width: 230px;
+      }
+      .card--wide .card-text { right: 20px; text-align: right; }
+      .card--round .card-text { left: 20px; text-align: left; }
+
+      /* SEC-MOMENT */
+      .moment-cards { flex-direction: column; height: auto; gap: 10px; }
+      .mcard, .mcard--lg, .mcard--md, .mcard--sm { height: 298px; flex: none; width: 100%; }
+      .mcard-label h3 { font-size: 38px; }
+      .mcard-label span { font-size: 24px; font-style: italic; }
       .sec-moment .quote { font-size: 22px; }
-      .sec-fiba-inner { flex-wrap: wrap; justify-content: center; text-align: center; }
-      .sec-fiba-inner h3 { font-size: 20px; } .fiba-ball { display: none; }
-      .reasons-grid { grid-template-columns: 1fr; } .reason--r { grid-column: 1; }
-      .reason-n { font-size: 80px; min-width: 50px; }
-      .sec-reasons .bg-ball { width: 400px; right: -150px; }
+
+      /* SEC-FIBA */
+      .sec-fiba-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .sec-fiba-inner h3 { font-size: 20px; }
+      .fiba-ball { width: 150px; right: 20px; top: -60px; }
+
+      /* SEC-REASONS */
+      .sec-reasons { min-height: auto; padding-bottom: 40px; overflow: visible; }
+      .reasons-grid { grid-template-columns: 1fr; }
+      .reason--r { grid-column: 1; }
+      .reason-n { font-size: 150px; min-width: 85px; }
+      .reason h4 { font-size: 20px; }
+      .reason p { font-size: 16px; line-height: 1.375; }
+      .reasons-grid .reason:nth-child(2) { order: 3; }
+      .reasons-grid .reason:nth-child(3) { order: 2; }
+      .reasons-camera {
+        display: block; position: relative; z-index: 10;
+        width: calc(100% + 40px); margin-left: -20px; margin-top: 20px;
+      }
+      .sec-reasons .bg-ball { display: none !important; }
+      .sec-reasons .bg-court { display: none !important; }
+
+      /* SEC-VIDEO */
+      .sec-video { text-align: left; }
+
+      /* FINAL */
       .final-top { flex-direction: column; }
-      .final-text { padding: 40px 20px; max-width: 100%; } .final-text p { font-size: 17px; }
+      .final-text { padding: 24px 20px; max-width: 100%; }
+      .final-text p { font-size: 18px; }
       .final-img { height: 280px; min-height: 280px; }
-      .final-logo-badge { width: 160px; height: 160px; top: -80px; }
-      .final-footer { padding: 110px 20px 30px; } .footer-tag { font-size: 24px; }
+      .final-logo-badge { width: 115px; height: 115px; top: -57px; }
+      .final-badge-img { width: 55%; }
+      .final-footer { padding: 80px 20px 30px; }
+      .footer-tag { font-size: 32px; }
     }
     @media (min-width: 769px) and (max-width: 1200px) {
       .nav-inner { padding: 0 48px; }
@@ -325,6 +394,7 @@
           <span class="cyan">Now you can light it up locally.</span>
         </p>
       </div>
+      <a href="#contact" class="hero-cta">Contact us &#8594;</a>
     </div>
   </section>
 
@@ -365,15 +435,18 @@
   <!-- WON'T HAPPEN AUTOMATICALLY -->
   <section class="sec-auto">
     <h2>This Won't Happen <span class="cyan">Automatically</span></h2>
-    <p>The agreement has been signed on the national level. But it's up to local basketball associations to <em>move quickly</em> to adopt and execute this new relationship on the community level. Basketball Australia spent a long time looking for the best partner, and they chose Pixellot because:</p>
+    <p class="sec-auto-detail">The agreement has been signed on the national level. But it's up to local basketball associations to <em>move quickly</em> to adopt and execute this new relationship on the community level.</p>
+    <p class="sec-auto-intro">Basketball Australia spent a long time looking for the best partner, and they chose Pixellot because:</p>
     <div class="cards-row">
       <div class="card card--wide">
         <img src="assets/benefit1-camera.png" alt="Pixellot Camera System">
         <div class="card-overlay"></div>
+        <span class="card-text">We are the technology leaders</span>
       </div>
       <div class="card card--round">
         <img src="assets/benefit2-players.jpg" alt="Youth Basketball">
         <div class="card-overlay"></div>
+        <span class="card-text">Deep commitment to youth sports worldwide</span>
       </div>
       <div class="cards-camera">
         <img src="assets/camera.png" alt="Pixellot Camera">
@@ -427,7 +500,7 @@
   <!-- FIVE REASONS -->
   <section class="sec-reasons">
     <img src="assets/court-bg.png" alt="" class="bg-court">
-    <img src="assets/basketball-split.png" alt="" class="bg-ball">
+    <img src="assets/camera-product.png" alt="" class="bg-ball">
     <div class="inner">
       <h2>Five Reasons This <span class="cyan">Opportunity</span> Is Unprecedented</h2>
       <p class="sub">Secure your priority onboarding now.</p>
@@ -454,6 +527,7 @@
         </div>
       </div>
     </div>
+    <img src="assets/camera-product.png" alt="Pixellot 12K Triple Camera Array" class="reasons-camera">
   </section>
 
   <!-- VIDEO -->
@@ -489,7 +563,8 @@
       <div class="final-footer" id="contact">
         <div class="footer-tag">
           <span class="w">Together we will </span>
-          <span class="c">Light up your team</span>
+          <span class="c">Bring it Home</span>
+          <span class="w"> for everyone!</span>
         </div>
         <div class="footer-socials">
           <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="white"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07c0 6.02 4.39 11.02 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.33l-.53 3.49h-2.8v8.44C19.61 23.09 24 18.09 24 12.07z"/></svg></a>
