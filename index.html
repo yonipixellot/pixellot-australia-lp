@@ -172,7 +172,7 @@
 
     /* ═══════ SECTION: Five Reasons ═══════ */
     .sec-reasons {
-      position: relative; min-height: 884px; padding: 50px 96px 80px; overflow: hidden;
+      position: relative; min-height: 884px; padding: 50px 96px 80px; overflow: visible;
       background: linear-gradient(141deg, #02131d 2%, #050917 32%, #0f1c3c 53%, #152349 63%, #182651 71%);
       color: var(--white);
     }
@@ -603,11 +603,7 @@
         scrollTrigger: { trigger: '.sec-fiba', start: 'top bottom', end: 'bottom top', scrub: 2 }
       });
 
-      // Reasons basketball parallax
-      gsap.to('.bg-ball', {
-        y: 100, rotation: -8, ease: 'none',
-        scrollTrigger: { trigger: '.sec-reasons', start: 'top bottom', end: 'bottom top', scrub: 2 }
-      });
+      // Camera product - no parallax needed
 
       // Subtle section entrance — NO opacity:0, just slide up
       document.querySelectorAll('.sec-auto, .sec-moment, .sec-fiba, .sec-reasons, .sec-video, .sec-final').forEach(sec => {
