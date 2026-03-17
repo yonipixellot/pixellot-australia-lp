@@ -172,12 +172,12 @@
 
     /* ═══════ SECTION: Five Reasons ═══════ */
     .sec-reasons {
-      position: relative; min-height: 884px; padding: 50px 96px 80px; overflow: visible;
+      position: relative; min-height: 884px; padding: 50px 96px 80px; overflow: hidden;
       background: linear-gradient(141deg, #02131d 2%, #050917 32%, #0f1c3c 53%, #152349 63%, #182651 71%);
       color: var(--white);
     }
     .sec-reasons .bg-court { position: absolute; bottom: 0; left: 0; width: 600px; opacity: .2; z-index: 1; }
-    .sec-reasons .bg-ball { position: absolute; bottom: 0; left: 0; width: 380px; opacity: .9; z-index: 1; pointer-events: none; }
+    .sec-reasons .bg-ball { display: none; }
     .sec-reasons .inner { position: relative; z-index: 2; max-width: 1248px; width: 100%; }
     .sec-reasons h2 { font-size: 40px; font-weight: 700; margin-bottom: 12px; }
     .sec-reasons h2 .cyan { color: var(--cyan); font-style: italic; }
@@ -270,7 +270,7 @@
     .sec-auto-detail em { color: var(--cyan); }
     .sec-auto-detail { margin-bottom: 5px; }
     .reasons-camera {
-      display: none;
+      position: absolute; bottom: 0; left: 0; width: 380px; z-index: 3;
     }
 
     /* ═══════ RESPONSIVE ═══════ */
@@ -344,11 +344,9 @@
       .reasons-grid .reason:nth-child(2) { order: 3; }
       .reasons-grid .reason:nth-child(3) { order: 2; }
       .reasons-camera {
-        display: block; position: relative; z-index: 10;
+        position: relative; bottom: auto; left: auto;
         width: calc(100% + 40px); margin-left: -20px; margin-top: 20px;
       }
-      .sec-reasons .bg-ball { display: none !important; }
-      .sec-reasons .bg-court { display: none !important; }
 
       /* SEC-VIDEO */
       .sec-video { text-align: left; }
