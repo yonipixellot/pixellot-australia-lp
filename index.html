@@ -35,9 +35,20 @@
       position: relative; width: 100%; height: 873px;
       overflow: hidden; background: #1a2030;
     }
+    /* Blurred backdrop fill — sits behind the sharp .hero-bg and stretches
+       to full viewport width so widescreen has no flat side-bars. */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background-image: url('assets/hero-bg.png');
+      background-size: cover; background-position: center top;
+      filter: blur(60px);
+      transform: scale(1.15);
+      pointer-events: none;
+    }
     .hero-bg {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; object-position: center top;
+      z-index: 1;
     }
     .hero-grad {
       position: absolute; bottom: 0; left: 0; right: 0; height: 260px;
@@ -341,7 +352,10 @@
     }
 
     /* Widescreen: cap hero-bg width so basketball stays at design scale
-       and doesn't overlap the title. Navy fills the sides.
+       and doesn't overlap the title. The blurred .hero::before backdrop
+       fills the rest of the viewport. The mask feathers the left/right
+       edges of the sharp image so it blends into the blurred backdrop
+       without a visible seam.
        Uses calc() (not transform) for centering so GSAP's parallax
        transform on .hero-bg doesn't clobber the offset. */
     @media (min-width: 1441px) {
@@ -350,6 +364,8 @@
         max-width: none;
         left: calc(50% - 720px);
         right: auto;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+                mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
       }
     }
   </style>
