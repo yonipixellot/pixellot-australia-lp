@@ -341,13 +341,15 @@
     }
 
     /* Widescreen: cap hero-bg width so basketball stays at design scale
-       and doesn't overlap the title. Navy fills the sides. */
+       and doesn't overlap the title. Navy fills the sides.
+       Uses calc() (not transform) for centering so GSAP's parallax
+       transform on .hero-bg doesn't clobber the offset. */
     @media (min-width: 1441px) {
       .hero-bg {
-        max-width: 1440px;
-        left: 50%;
+        width: 1440px;
+        max-width: none;
+        left: calc(50% - 720px);
         right: auto;
-        transform: translateX(-50%);
       }
     }
   </style>
